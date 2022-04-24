@@ -2,7 +2,7 @@
 
 bootcmd:
   - DEBIAN_FRONTEND=noninteractive apt-get -yq update
-  - DEBIAN_FRONTEND=noninteractive apt-get -yq install gnupg software-properties-common
+  - DEBIAN_FRONTEND=noninteractive apt-get -yq install gnupg
 
 users:
     - default
@@ -28,6 +28,6 @@ packages:
     - x2goserver-xsession
     - kali-linux-default
     - kali-desktop-lxde
-packapackage_update: true
+package_update: true
 package_upgrade: true
 package_reboot_if_required: true
