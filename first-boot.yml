@@ -27,6 +27,7 @@ packages:
     - x2goserver
     - x2goserver-xsession
     - kali-linux-default
+    - kali-desktop-lxde
 packapackage_update: true
 package_upgrade: true
 package_reboot_if_required: true
