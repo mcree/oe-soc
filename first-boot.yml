@@ -1,0 +1,32 @@
+#cloud-config
+
+bootcmd:
+  - DEBIAN_FRONTEND=noninteractive apt-get -yq update
+  - DEBIAN_FRONTEND=noninteractive apt-get -yq install gnupg software-properties-common
+
+users:
+    - default
+    # create "backdoor" user for all soc nodes
+    - name: mcree
+      gecos: mcree
+      lock_passwd: false
+      passwd: $6$ujjzj.ZGjDZ567do$2HQhtZsSnaCYS3.sip3cqtF3pEwgpLKgUjL9N6Zjv4elSABfCefC91QKW3NLEn31C6ZAtsSUPmZ9GVahrFT371
+      sudo: ALL=(ALL) NOPASSWD:ALL
+      ssh_authorized_keys: ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFQ7bgtOCcdu8FWxaDFq7F2Ep5b3ghXwRPpWn9q1Aa06YHlFIe/+54WFzU1wlLsfaPE1AP86b2rAMDWyXeQEVsE= mcree@mcree
+
+# add kali linux sources
+apt:
+    sources:
+        kali-rolling:
+            keyid: 'ED444FF07D8D0BF6'
+            keyserver: 'hkp://keyserver.ubuntu.com:80'
+            source: 'deb http://http.kali.org/kali kali-rolling main contrib non-free'
+
+# install kali and x2go on top of debian
+packages:
+    - x2goserver
+    - x2goserver-xsession
+    - kali-linux-default
+packapackage_update: true
+package_upgrade: true
+package_reboot_if_required: true
